@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDairy</title>
+</head>
+<body>
+{% if category_posts %}
+    <h1>#{{ cats }}</h1>
+    <hr>
+    <br/>
+    {% for post in category_posts %}
+        <h1><a href="{% url 'full-post' post.pk %}">{{ post.title }}</a></h1>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <h4><a href="{% url 'update_post' post.pk %}">(Edit)</a> - <a href="{% url 'delete-post' post.pk %}">(Delete)</a></h4>
+            {% endif %}
+        {% endif %}
+        <h5>@{{ post.author }}</h5>
+        <h3>{{ post.body|slice:":100"|safe }}</h3>
+    {% endfor %}
+{% else %}
+    <h1>Page does not exist</h1>
+{% endif %}
+</body>
+</html>

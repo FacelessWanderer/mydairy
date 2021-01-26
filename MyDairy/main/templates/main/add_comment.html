@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDairy</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Add comment</h1>
+        <div class="form-group">
+            <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+            </form>
+        </div>
+    <style>
+        .form-group{
+            color:yellow;
+        }
+
+
+<!--        этот див вызван в моём питон файле-->
+        .form-control{
+            color: blue;
+            border: 1px solid blue;
+            border-radius: 5px 5px 0 0;
+            resize:none;
+        }
+    </style>
+    {% else %}
+        <h1>Log in please</h1>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+

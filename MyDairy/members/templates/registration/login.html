@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+
+    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
+    <hr>
+    <br/>
+    <h1>Log in</h1>
+
+    <div class="form-group">
+        <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username..." class="form-control"> <br/>
+        <input type="password" name="password" placeholder="Password..." class="form-control" > <br/>
+        <input type="submit" value="Save">
+        </form>
+    </div>
+    <br/>
+
+    {% for message in messages %}
+		<p id="messages">{{message}}</p>
+	{% endfor %}
+
+    Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a><br/>
+    Forgot password? <a href="{% url 'reset_password' %}" class="ml-2">Reset password</a><br/>
+
+
+</body>
+</html>

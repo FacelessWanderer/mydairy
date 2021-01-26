@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDairy</title>
+</head>
+<body>
+    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
+    <hr>
+    <br/>
+    {% if user.is_authenticated %}
+        <h2><a href="{% url 'create-post' %}"> Add post </a> </h2>
+<!--        <h2><a href="{% url 'create-category' %}"> Add category </a> </h2>-->
+        {% if user.profile.id %}
+            <h2><a href="{% url 'my_profile' user.profile.id %}"> {{user.first_name}} {{user.last_name}} </a> </h2>
+        {% else %}
+            <h2><a href="{% url 'initial_settings' %}"> {{user.first_name}} {{user.last_name}} </a> </h2>
+        {% endif %}
+
+        {% if user.is_superuser %}
+            <h2><a href="{% url 'edit_profile'  %}"> Edit profile </a> </h2>
+        {% endif %}
+        <h2><a href="{% url 'logout' %}"> Log out </a></h2>
+        <hr>
+        <br/>
+    {% else %}
+        <h2><a href="{% url 'login' %}"> Log in </a></h2>
+        <h2><a href="{% url 'register' %}"> Sign up </a></h2>
+        <hr>
+        <br/>
+    {% endif %}
+
+    <form action="{% url 'home' %}" class="search-bar" id="search-form">
+        <input type="search" class="search" name="search-area" placeholder="Search post">
+    </form>
+
+
+    <br/>
+
+
+    {% for post in posts %}
+        <h1><a href="{% url 'full-post' post.pk %}">{{ post.title }}</a></h1>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <h4><a href="{% url 'update_post' post.pk %}">(Edit)</a> - <a href="{% url 'delete-post' post.pk %}">(Delete)</a></h4>
+            {% endif %}
+        {% endif %}
+        {% if user.profile.id %}
+            <h5><a href="{% url 'my_profile' post.author.profile.id %}">@{{ post.author }}</a>
+        {% else %}
+            <h5><a href="{% url 'initial_settings' %}">@{{ post.author }}</a>
+        {% endif %}
+            - <a href="{% url 'category' post.category|slugify %}">#{{ post.category }}</a> </h5>
+        <h3>{{ post.body|slice:":100"|safe }}</h3>
+    {% endfor %}
+</body>
+</html>

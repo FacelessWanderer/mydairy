@@ -1,0 +1,16 @@
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Delete</h1>
+            <h3>Delete: {{ post.title }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Delete</button>
+            </form>
+    {% else %}
+        <h1>Log in please</h1>
+    {% endif %}
+
+{% else %}
+    <h1>Log in please</h1>
+
+{% endif %}

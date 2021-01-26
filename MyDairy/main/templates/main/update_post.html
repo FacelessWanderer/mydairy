@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDairy</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <h1>Edit post</h1>
+            <div class="form-group">
+                <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+                </form>
+            </div>
+        {% else %}
+            <h1>Log in please</h1>
+        {% endif %}
+    {% else %}
+    <h1>Log in please</h1>
+
+    {% endif %}
+</body>
+</html>

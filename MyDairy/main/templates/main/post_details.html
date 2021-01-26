@@ -1,0 +1,61 @@
+    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
+    <hr>
+    <br/>
+
+    <h1>{{ post.title }}</h1>
+    {% if user.profile.id %}
+        <strong> <a href="{% url 'my_profile' post.author.profile.id %}">@{{ post.author }}</a></strong>
+    {% else %}
+        <strong> <a href="{% url 'initial_settings' %}">@{{ post.author }}</a></strong>
+    {% endif %}
+    <hr>
+    <br/>
+    <h3>{{ post.body|safe }}</h3>
+    <hr>
+    <br/>
+
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            {% if liked %}
+                <button type="submit" , name="post_id", value="{{ post.id }}">Unlike</button>
+            {% else %}
+                <button type="submit" , name="post_id", value="{{ post.id }}">Like</button>
+            {% endif %}
+            - {{ total_likes }}
+        {% else %}
+            {{ total_likes }}
+        {% endif %}
+
+    </form>
+    <br/><br/>
+        <h2>Comments</h2>
+        {% if user.is_authenticated %}
+            {% if not post.comments.all %}
+                No comments yet <br/> <a href="{% url 'add_comment' post.pk %}">Write comment</a>
+            {% else %}
+                <br/>
+                <a href="{% url 'add_comment' post.pk %}">Write comment</a>
+                <br/><br/>
+                {% for comment in post.comments.all %}
+                    <strong> @{{ comment.name }}</strong> <br/>
+                    {{ comment.body }} <br/>
+                {% endfor %}
+
+            {% endif %}
+
+        {% else %}
+            {% if not post.comments.all %}
+                No comments yet
+            {% else %}
+                {% for comment in post.comments.all %}
+                    <strong> @{{ comment.name }}</strong> <br/>
+                    {{ comment.body }} <br/>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    <br/><br/>
+    <hr>
+    <br/>
+
+    <a href="{% url 'home' %}">Back</a>

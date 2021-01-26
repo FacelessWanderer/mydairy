@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+</head>
+<body>
+    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
+    <hr>
+    <br/>
+
+    <h1>Sign up</h1>
+    <br/><br/>
+
+    <div class="form-group">
+        <form method="post">
+        {% csrf_token %}
+<!--        {{ form.as_p }}-->
+            Username: {{form.username}} <br/>
+            First name: {{form.first_name}} <br/>
+            Last name: {{form.last_name}} <br/>
+            Email: {{form.email}} <br/>
+            Password: {{form.password1}} <br/>
+            Repeat password: {{form.password2}} <br/>
+        <input type="submit" value="Create">
+        </form>
+    </div>
+    <br/>
+
+    {{form.errors}}
+
+Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+
+
+
+</body>
+</html>

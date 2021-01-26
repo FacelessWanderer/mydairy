@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDairy</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Add category</h1>
+        <div class="form-group">
+            <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+            </form>
+        </div>
+
+        <script>
+            var name = "{{ user.id }}";
+            document.getElementById("elder").value
+                = name;
+        </script>
+
+    {% else %}
+        <h1>Log in please</h1>
+    {% endif %}
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+</head>
+<body>
+
+    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
+    <hr>
+    <br/>
+    {% if page_user.user.profile.profile_pic %}
+        <img class="profile-pic" src="{{ page_user.user.profile.profile_pic.url }}" width="200px" height="200px">
+    {% else %}
+        <img class="profile-pic" src="{% static '/images/default.png' %}" width="200px" height="200px">
+    {% endif %}
+    <h2>{{page_user.user.first_name}} {{page_user.user.last_name}}</h2>
+    <hr>
+    <br/>
+
+    {% if user.id == profile.user.id %}
+        <h3><a href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></h3>
+        <hr>
+        <br/>
+    {% endif %}
+
+    Username: @{{ page_user }} <br/>
+    Bio: {{page_user.user.profile.bio}}
+    <hr>
+    <br/>
+
+</body>
+</html>

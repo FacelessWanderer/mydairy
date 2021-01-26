@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        <h1>Edit Profile</h1>
+        <hr>
+        <br/>
+
+        {{user.first_name}} {{user.last_name}} <br>
+        {{user.profile.bio}} <br/> <br/>
+
+
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+<!--                {{form.as_p}}-->
+                Username: {{form.username}} <br/>
+                First name: {{form.first_name}}<br/>
+                Last name: {{form.last_name}}<br/>
+                Email: {{form.email}}<br/>
+                Password: <a href="{% url 'password' %}">Change</a><br/>
+<!--                {{form.username}}<br/>-->
+                {% if user.is_superuser %}
+                    Last login: {{form.last_login}}<br/>
+                    Is superuser: {{form.is_superuser}}<br/>
+                    Is staff: {{form.is_staff}}<br/>
+                    Is active: {{form.is_active}}<br/>
+                    Date joined: {{form.date_joined}}<br/>
+                {% endif %}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        <br/>
+
+</body>
+</html>
+
+

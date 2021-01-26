@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if user.id == profile.user.id %}
+        <h1>Edit profile</h1>
+        <hr>
+        <br/>
+
+         <div class="form-group">
+             <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+<!--                    {{form.bio}}<br/>-->
+<!--                    {{form.media}} <br/>-->
+                {{form.as_p}}
+                <input type="submit" value="Save">
+             </form>
+         </div>
+            <br/>
+    {% endif %}
+
+<!--     <script>-->
+<!--         var name = {{user.id}}-->
+<!--         document.getElementById('elder').value-->
+<!--            = name;-->
+<!--     </script>-->
+</body>
+</html>
