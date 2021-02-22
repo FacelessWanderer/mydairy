@@ -79,11 +79,11 @@ body {
   margin-bottom: 20px;
   margin-top: 30px;
   cursor: pointer;
-  transition: transform .25s, box-shadow .25s;
+  transition: transform .25s, box-shadow .25s, background-color .25s;
 }
 
 .block-left__sign-up-btn:hover {
-  background: #2ba1e6;
+  background-color: #2ba1e6;
 }
 
 .block-left__sign-up-btn:active {
