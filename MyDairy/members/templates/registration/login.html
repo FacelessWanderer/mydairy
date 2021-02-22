@@ -1,33 +1,78 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Log in</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <h1><a href="{% url 'home' %}">MyDairy</a></h1>-->
+<!--    <hr>-->
+<!--    <br/>-->
+<!--    <h1>Log in</h1>-->
+
+<!--    <div class="form-group">-->
+<!--        <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <input type="text" name="username" placeholder="Username..." class="form-control"> <br/>-->
+<!--        <input type="password" name="password" placeholder="Password..." class="form-control" > <br/>-->
+<!--        <input type="submit" value="Save">-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <br/>-->
+
+<!--    {% for message in messages %}-->
+<!--		<p id="messages">{{message}}</p>-->
+<!--	{% endfor %}-->
+
+<!--    Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a><br/>-->
+<!--    Forgot password? <a href="{% url 'reset_password' %}" class="ml-2">Reset password</a><br/>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Log in</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,600&display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
 <body>
-
-    <h1><a href="{% url 'home' %}">MyDairy</a></h1>
-    <hr>
-    <br/>
-    <h1>Log in</h1>
-
-    <div class="form-group">
-        <form method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username..." class="form-control"> <br/>
-        <input type="password" name="password" placeholder="Password..." class="form-control" > <br/>
-        <input type="submit" value="Save">
-        </form>
+  <form class="block-left" method="POST">
+      {% csrf_token %}
+    <div class="block-left__top">
+        <a href="{% url 'home' %}">
+            <div class="block-left__get-back get-back">
+              <div><img src="{% static '/images/back button.svg' %}" alt="Get back button">
+                <div class="get-back__text">Back</div>
+              </div>
+            </div>
+        </a>
+      Log in
     </div>
-    <br/>
 
-    {% for message in messages %}
-		<p id="messages">{{message}}</p>
-	{% endfor %}
+    <div class="block-left__middle form-group">
+      <input type="text" class="form-control" placeholder="Username" name="username" required>
+      <input type="password" class="form-control" placeholder="Password" name="password" required>
+    </div>
 
-    Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a><br/>
-    Forgot password? <a href="{% url 'reset_password' %}" class="ml-2">Reset password</a><br/>
+    <div class="block-left__bottom">
+      <button class="block-left__login-btn" type="submit">Log in</button>
+      <span>Don`t have an account? <a href="{% url 'register' %}">Sign up</a></span>
+      <span>Forgot password? <a href="{% url 'reset_password' %}">Reset password</a></span>
+    </div>
+  </form>
 
-
+  <div class="block-right">
+    <span class="block-right__text">Join &<br>enjoy</span>
+  </div>
 </body>
 </html>

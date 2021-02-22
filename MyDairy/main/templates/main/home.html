@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +14,17 @@
 <!--        <h2><a href="{% url 'create-category' %}"> Add category </a> </h2>-->
         {% if user.profile.id %}
             <h2><a href="{% url 'my_profile' user.profile.id %}"> {{user.first_name}} {{user.last_name}} </a> </h2>
+            <hr>
+            <br/>
+            {% if user.profile.profile_pic %}
+                <img class="profile-pic" src="{{ user.profile.profile_pic.url }}" width="200px" height="200px">
+            {% else %}
+                <img class="profile-pic" src="{% static '/images/default.png' %}" width="200px" height="200px">
+            {% endif %}
+
         {% else %}
             <h2><a href="{% url 'initial_settings' %}"> {{user.first_name}} {{user.last_name}} </a> </h2>
+
         {% endif %}
 
         {% if user.is_superuser %}
@@ -46,12 +56,13 @@
             {% endif %}
         {% endif %}
         {% if user.profile.id %}
-            <h5><a href="{% url 'my_profile' post.author.profile.id %}">@{{ post.author }}</a>
+            <h5><a href="{% url 'my_profile' post.author.profile.id %}">@{{ post.author }}</a>- <a href="{% url 'category' post.category|slugify %}">#{{ post.category|cut:" "|lower }}</a> </h5>
         {% else %}
-            <h5><a href="{% url 'initial_settings' %}">@{{ post.author }}</a>
+            <h5><a href="{% url 'initial_settings' %}">@{{ post.author }}</a>- <a href="{% url 'category' post.category|slugify %}">#{{ post.category|cut:" " }}</a> </h5>
         {% endif %}
-            - <a href="{% url 'category' post.category|slugify %}">#{{ post.category }}</a> </h5>
+
         <h3>{{ post.body|slice:":100"|safe }}</h3>
+        <h4> Likes: {{ post.total_likes }} </h4>
     {% endfor %}
 </body>
 </html>

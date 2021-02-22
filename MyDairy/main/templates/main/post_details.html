@@ -1,9 +1,15 @@
+   {% load static %}
     <h1><a href="{% url 'home' %}">MyDairy</a></h1>
     <hr>
     <br/>
 
     <h1>{{ post.title }}</h1>
     {% if user.profile.id %}
+        {% if post.author.profile.profile_pic %}
+            <img class="profile-pic" src="{{ post.author.profile.profile_pic.url }}" width="200px" height="200px">
+        {% else %}
+            <img class="profile-pic" src="{% static '/images/default.png' %}" width="200px" height="200px">
+        {% endif %}
         <strong> <a href="{% url 'my_profile' post.author.profile.id %}">@{{ post.author }}</a></strong>
     {% else %}
         <strong> <a href="{% url 'initial_settings' %}">@{{ post.author }}</a></strong>

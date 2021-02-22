@@ -6,7 +6,7 @@
 </head>
 <body>
 {% if category_posts %}
-    <h1>#{{ cats }}</h1>
+    <h1>#{{ cats|cut:"-"|lower }}</h1>
     <hr>
     <br/>
     {% for post in category_posts %}

@@ -13,14 +13,15 @@
          <div class="form-group">
              <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-<!--                    {{form.bio}}<br/>-->
-<!--                    {{form.media}} <br/>-->
-                {{form.as_p}}
+                    {{form.bio}}<br/>
+                    {{form.profile_pic}} <br/>
+<!--                {{form.as_p}}-->
                 <input type="submit" value="Save">
              </form>
          </div>
             <br/>
     {% endif %}
+
 
 <!--     <script>-->
 <!--         var name = {{user.id}}-->
