@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration page</title>
+  <link rel="stylesheet" href="./../styles/main.css">
+  <link rel="stylesheet" href="./../styles/registration.css">
+</head>
+
+<body>
+  <form class="block-left" method="POST">
+    <div class="block-left__top">
+      <div class="block-left__get-back get-back">
+        <div><img src="./../images/back-button.svg" alt="Get back button">
+          <div class="get-back__text">Back</div>
+        </div>
+      </div>
+      Sign up
+    </div>
+
+    <div class="block-left__middle form-group">
+      <input type="text" class="form-control" placeholder="Username" name="username" required>
+      <div class="form-group__inner">
+        <input type="text" class="form-control" placeholder="First name" name="first_name" required>
+        <input type="text" class="form-control" placeholder="Last name" name="last_name" required>
+      </div>
+      <input type="email" class="form-control" placeholder="Email" name="email" required>
+      <input type="password" class="form-control" placeholder="Password" name="password1" required>
+      <input type="password" class="form-control" placeholder="Repeat password" name="password2" required>
+    </div>
+
+    <div class="block-left__bottom">
+      <button class="block-left__sign-up-btn" type="submit">Sign up</button>
+      <span>Already have an account? <a href="#">Login</a></span>
+    </div>
+  </form>
+
+  <div class="block-middle"></div>
+
+  <div class="block-right">
+    <span class="block-right__text">Join &<br>enjoy</span>
+  </div>
+</body>
+
+</html>
