@@ -97,7 +97,7 @@ body {
   background: var(--bg-color);
   border: 3px solid var(--light-blue);
   border-radius: 20px;
-  text-align: center;
+  padding-left: 20px;
   font-size: 24px;
   line-height: 28px;
   font-family: var(--main-font);
